@@ -1,0 +1,6 @@
+aiohttp[speedups]
+aio-pika
+uvloop
+pytz
+python-dateutil
+jsonformatter

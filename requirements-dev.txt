@@ -1,0 +1,15 @@
+-r requirements.txt
+
+pytest
+pytest-env
+pytest-mock
+pytest-asyncio
+pytest-aiohttp
+pytest-lazy-fixture
+aioresponses
+asynctest
+
+# Linters
+pre-commit
+prospector[with_mypy]
+bandit

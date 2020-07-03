@@ -2,13 +2,13 @@
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
 *$py.class
 
 # C extensions
 *.so
 
 # Distribution / packaging
+.Python
 build/
 develop-eggs/
 dist/
@@ -128,6 +128,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+### VirtualEnv template
+# Virtualenv
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
 
 # RabbitMQ data
 .rabbit_data/

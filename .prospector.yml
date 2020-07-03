@@ -1,0 +1,45 @@
+output-format: grouped
+
+doc-warnings: false
+test-warnings: false
+member-warnings: false
+max-line-length: 120
+
+ignore-paths:
+  - docs/
+
+inherits:
+  - strictness_veryhigh
+
+pylint:
+  disable: [star-args]
+  options:
+    max-locals: 15
+    max-returns: 6
+    max-branches: 15
+    max-statements: 60
+    min-public-methods: 1
+    max-public-methods: 20
+    max-line-length: 120
+
+pep8:
+  options:
+    max-line-length: 120
+
+bandit:
+  run: true
+  options:
+    config: .bandit.yml
+
+mypy:
+  run: true
+
+pep257:
+  run: false
+
+pyroma:
+  run: false
+
+frosted:
+  run: false
+

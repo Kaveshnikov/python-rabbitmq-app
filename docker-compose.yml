@@ -1,0 +1,34 @@
+version: "3.4"
+services:
+  mq:
+    image: rabbitmq:3.7-management-alpine
+    hostname: test-rabbit
+    volumes:
+      - ./.rabbit_data:/var/lib/rabbitmq
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+
+  app:
+    image: python-rabbitmq-app:latest
+    depends_on:
+      - mq
+    command: ["./wait-for-it.sh", "mq:5672", "--", "python", "application/app.py"]
+    environment:
+      SERVER_HOST: '0.0.0.0'
+      SERVER_PORT: '8080'
+      RABBITMQ_HOST: 'mq'
+      RABBITMQ_PORT: '5672'
+      RABBITMQ_LOGIN: 'guest'
+      RABBITMQ_PASSWORD: 'guest'
+      RABBITMQ_PREFETCH_COUNT: '1'
+      RABBITMQ_DEFAULT_TIMEOUT: '10'
+      APP_LOGGING_LEVEL: 'INFO'
+      AIOHTTP_LOGGING_LEVEL: 'WARNING'
+      AIOPIKA_LOGGING_LEVEL: 'DEBUG'
+      ENVIRONMENT: 'LOCAL'
+    build:
+      dockerfile: ./Dockerfile-dev
+      context: ./
+    ports:
+      - '8080:8080'
